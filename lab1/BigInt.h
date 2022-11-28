@@ -213,7 +213,6 @@ class BigInt {
             for (long long int i = 0; i < str.size(); i++) {
                 if (str[i] < '0' || str[i] > '9') {
                     throw BigInt::invalid_argument();
-                    return;
                 }
             }
         }
@@ -232,12 +231,7 @@ class BigInt {
                 BigInt();
             }
             else {
-                try {
-                    this->check_string(str);
-                } catch (BigInt::invalid_argument ex) {
-                    std::cout << ex.what();
-                    exit(0);
-                }
+                this->check_string(str);
                 if (str[0] == '-') {
                     this->isNegative_ = true;
                     str = str.substr(1);
@@ -295,17 +289,13 @@ class BigInt {
 
         BigInt::operator int() const {
             int result = this->digits_[0];
-            try {
-                if (this->digits_.size() > 2) {
-                    throw BigInt::out_of_bound();
-                }
-                else if (this->digits_.size() == 2 && this->digits_[1] > 2) {
-                    throw BigInt::out_of_bound();
-                }
-            } catch (BigInt::out_of_bound ex) {
-                std::cout << ex.what();
-                exit(0);
+            if (this->digits_.size() > 2) {
+                throw BigInt::out_of_bound();
             }
+            else if (this->digits_.size() == 2 && this->digits_[1] > 2) {
+                throw BigInt::out_of_bound();
+            }
+            
             if (this->digits_.size() == 2) {
                 result += this->digits_[1] * BigInt::base_;
             }
@@ -477,14 +467,9 @@ class BigInt {
 
         BigInt operator/(const BigInt & first, const BigInt & second) {
            BigInt result;
-            try {
-                if (second == result) {
-                    throw BigInt::divide_by_zero();
-                }
-            } catch (BigInt::divide_by_zero ex) {
-                std::cout << ex.what();
-                exit(0);
-            }
+            if (second == result) {
+                throw BigInt::divide_by_zero();
+            }    
             if (first < second && first.isNegative_ == second.isNegative_) {
                 return result;
             }
