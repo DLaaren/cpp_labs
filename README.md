@@ -11,3 +11,5 @@ Sometimes the pet can make a poop, so it is better to clean up asap (to do it ju
 There is a shop, where you are able to make some purchases (Every game year you will get 1 coin).
 So, you can buy litter box, and you won't need to clean after your pet, because it will do poop in that litter box.
 The same story with toys - the mood level will never decrease.
+
+Try to click on the pet, there is something cute :3
