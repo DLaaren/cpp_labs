@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/dlaaren/Desktop/lab2/build",
+  "command": "/usr/bin/g++  -I/home/dlaaren/Desktop/lab2/tamagochi -I/home/dlaaren/Desktop/lab2/gamebase -isystem /usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/tamagochi.dir/main.cpp.o -c /home/dlaaren/Desktop/lab2/main.cpp",
+  "file": "/home/dlaaren/Desktop/lab2/main.cpp"
+},
+{
+  "directory": "/home/dlaaren/Desktop/lab2/build",
+  "command": "/usr/bin/g++  -I/home/dlaaren/Desktop/lab2/tamagochi -I/home/dlaaren/Desktop/lab2/gamebase -isystem /usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/tamagochi.dir/gamebase/game.cpp.o -c /home/dlaaren/Desktop/lab2/gamebase/game.cpp",
+  "file": "/home/dlaaren/Desktop/lab2/gamebase/game.cpp"
+},
+{
+  "directory": "/home/dlaaren/Desktop/lab2/build",
+  "command": "/usr/bin/g++  -I/home/dlaaren/Desktop/lab2/tamagochi -I/home/dlaaren/Desktop/lab2/gamebase -isystem /usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/tamagochi.dir/gamebase/textureManager.cpp.o -c /home/dlaaren/Desktop/lab2/gamebase/textureManager.cpp",
+  "file": "/home/dlaaren/Desktop/lab2/gamebase/textureManager.cpp"
+},
+{
+  "directory": "/home/dlaaren/Desktop/lab2/build",
+  "command": "/usr/bin/g++  -I/home/dlaaren/Desktop/lab2/tamagochi -I/home/dlaaren/Desktop/lab2/gamebase -isystem /usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/tamagochi.dir/gamebase/gameObject.cpp.o -c /home/dlaaren/Desktop/lab2/gamebase/gameObject.cpp",
+  "file": "/home/dlaaren/Desktop/lab2/gamebase/gameObject.cpp"
+}
+]

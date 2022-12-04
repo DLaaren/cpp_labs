@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/tamagochi.dir/main.cpp.o CMakeFiles/tamagochi.dir/gamebase/game.cpp.o CMakeFiles/tamagochi.dir/gamebase/textureManager.cpp.o CMakeFiles/tamagochi.dir/gamebase/gameObject.cpp.o -o tamagochi  /usr/lib/libSDL2main.a /usr/lib/libSDL2-2.0.so.0.2400.2 /usr/lib/libSDL2_image.so /usr/lib/libSDL2_mixer.so 
