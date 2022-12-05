@@ -1,14 +1,12 @@
 #include "game.h"
 #include "tamagochi.h"
+
+#include <memory>
 #include <iostream>
 
 namespace game {
 
 SDL_Renderer *Game::renderer_ = nullptr;
-
-Game::Game() {}   
-
-Game::~Game() {}
 
 void Game::Init(const char *title) {
     if ( SDL_Init(SDL_INIT_EVERYTHING) == 0 ) {
@@ -40,24 +38,24 @@ void Game::Init(const char *title) {
         return;
     }
     
-    background = new GameObject("background.png", 0, 0, Game::windowSize.width, Game::windowSize.height);
-    shop = new GameObject("shopsign.png", 680, 20, 100, 100);
-    kitten = new tamagochi::Pet("kitten.png", 450, 450, 400, 400);
+    background = std::make_unique<GameObject>("background.png", 0, 0, Game::windowSize.width, Game::windowSize.height);
+    shop = std::make_unique<GameObject>("shopsign.png", 680, 20, 100, 100);
+    kitten = std::make_unique<tamagochi::Pet>("kitten.png", 450, 450, 400, 400);
 
-    shopBackground = new GameObject("shop_background.png", 0, 0, Game::windowSize.width, Game::windowSize.height);
-    exitButton = new GameObject ("exit.png", 600, 20, 180, 100);
-    coins = new GameObject("coin.png", 700, 120, 100, 100);
-    toys = new GameObject("toys.png", 110, 500, 150, 150);
-    litterBox = new GameObject("litter_box.png", 80, 300, 150, 150);
-    pills = new GameObject("pills.png", 50, 100, 200, 200);
-    soldSign1 = new GameObject("sold.png", 100, 550, 200, 100);
-    soldSign2 = new GameObject("sold.png", 100, 350, 200, 100);
-    coin1 = new GameObject("zero.png", 620, 120, 100, 100);
-    coin2 = new GameObject("zero.png", 550, 120, 100, 100);
+    shopBackground = std::make_unique<GameObject>("shop_background.png", 0, 0, Game::windowSize.width, Game::windowSize.height);
+    exitButton = std::make_unique<GameObject>("exit.png", 600, 20, 180, 100);
+    coins = std::make_unique<GameObject>("coin.png", 700, 120, 100, 100);
+    toys = std::make_unique<GameObject>("toys.png", 110, 500, 150, 150);
+    litterBox = std::make_unique<GameObject>("litter_box.png", 80, 300, 150, 150);
+    pills = std::make_unique<GameObject>("pills.png", 50, 100, 200, 200);
+    soldSign1 = std::make_unique<GameObject>("sold.png", 100, 550, 200, 100);
+    soldSign2 = std::make_unique<GameObject>("sold.png", 100, 350, 200, 100);
+    coin1 = std::make_unique<GameObject>("0.png", 620, 120, 100, 100);
+    coin2 = std::make_unique<GameObject>("0.png", 550, 120, 100, 100);
 
-    pricePills = new GameObject("price1.png", 250, 150, 200, 100);
-    priceToys = new GameObject("price2.png", 250, 550, 200, 100);
-    priceLitterBox = new GameObject("price2.png", 250, 350, 200, 100);
+    pricePills = std::make_unique<GameObject>("price1.png", 250, 150, 200, 100);
+    priceToys = std::make_unique<GameObject>("price2.png", 250, 550, 200, 100);
+    priceLitterBox = std::make_unique<GameObject>("price2.png", 250, 350, 200, 100);
     
 
     isShopOpened_ = false;
@@ -70,70 +68,12 @@ void Game::Init(const char *title) {
 void Game::UpdateCoins() {
             int tmpCoin1 = coins_ % 10;
             int tmpCoin2 = coins_ / 10;
-            switch (tmpCoin1) {
-                case 0:
-                    coin1->UpdateTex("zero.png");
-                    break;
-                case 1:
-                    coin1->UpdateTex("one.png");
-                    break;
-                case 2:
-                    coin1->UpdateTex("two.png");
-                    break;
-                case 3:
-                    coin1->UpdateTex("three.png");
-                    break;
-                case 4:
-                    coin1->UpdateTex("four.png");
-                    break;
-                case 5:
-                    coin1->UpdateTex("five.png");
-                    break;
-                case 6:
-                    coin1->UpdateTex("six.png");
-                    break;
-                case 7:
-                    coin1->UpdateTex("seven.png");
-                    break;
-                case 8:
-                    coin1->UpdateTex("eight.png");
-                    break;
-                case 9: 
-                    coin1->UpdateTex("nine.png");
-                    break;
-            } 
-            switch (tmpCoin2) {
-                case 0:
-                    coin2->UpdateTex("zero.png");
-                    break;
-                case 1:
-                    coin2->UpdateTex("one.png");
-                    break;
-                case 2:
-                    coin2->UpdateTex("two.png");
-                    break;
-                case 3:
-                    coin2->UpdateTex("three.png");
-                    break;
-                case 4:
-                    coin2->UpdateTex("four.png");
-                    break;
-                case 5:
-                    coin2->UpdateTex("five.png");
-                    break;
-                case 6:
-                    coin2->UpdateTex("six.png");
-                    break;
-                case 7:
-                    coin2->UpdateTex("seven.png");
-                    break;
-                case 8:
-                    coin2->UpdateTex("eight.png");
-                    break;
-                case 9: 
-                    coin2->UpdateTex("nine.png");
-                    break;
-            }
+            char tmpStringC1[10];
+            char tmpStringC2[10];
+            snprintf(tmpStringC1, 10, "%d.png", tmpCoin1);
+            snprintf(tmpStringC2, 10, "%d.png", tmpCoin2);
+            coin1->UpdateTex(tmpStringC1);
+            coin2->UpdateTex(tmpStringC2);
 }
 
 void Game::HandleEvents() {
@@ -147,6 +87,7 @@ void Game::HandleEvents() {
             MouseState mouse;
             mouse.buttons = SDL_GetMouseState(&mouse.x, &mouse.y);
             ProcessInput(mouse);
+            break;
     }
 }
 

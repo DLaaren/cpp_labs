@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
@@ -9,8 +10,8 @@
 namespace game {
 class Game {
     public:
-        Game();
-        ~Game();
+        Game() = default;
+        ~Game() = default;
 
         void Init(const char *title);
         void HandleEvents();
@@ -48,22 +49,22 @@ class Game {
         SDL_Window *window_;
 
         int coins_;
-        GameObject *coin1;
-        GameObject *coin2;
+        std::unique_ptr<GameObject> coin1;
+        std::unique_ptr<GameObject> coin2;
 
-        tamagochi::Pet *kitten; 
-        GameObject *background;
-        GameObject *shop;
-        GameObject *shopBackground;
-        GameObject *exitButton;
-        GameObject *coins;
-        GameObject *toys;
-        GameObject *litterBox;
-        GameObject *pills;
-        GameObject *soldSign1;
-        GameObject *soldSign2;
-        GameObject *pricePills;
-        GameObject *priceToys;
-        GameObject *priceLitterBox;
+        std::unique_ptr<tamagochi::Pet> kitten; 
+        std::unique_ptr<GameObject> background;
+        std::unique_ptr<GameObject> shop;
+        std::unique_ptr<GameObject> shopBackground;
+        std::unique_ptr<GameObject> exitButton;
+        std::unique_ptr<GameObject> coins;
+        std::unique_ptr<GameObject> toys;
+        std::unique_ptr<GameObject> litterBox;
+        std::unique_ptr<GameObject> pills;
+        std::unique_ptr<GameObject> soldSign1;
+        std::unique_ptr<GameObject> soldSign2;
+        std::unique_ptr<GameObject> pricePills;
+        std::unique_ptr<GameObject> priceToys;
+        std::unique_ptr<GameObject> priceLitterBox;
         };
 }

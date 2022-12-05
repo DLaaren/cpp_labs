@@ -1,9 +1,11 @@
 #pragma once
-#include <stdlib.h>
-#include "gameObject.h"
-#include "textureManager.h"
+
+#include <cstdlib>
 #include <SDL2/SDL_mixer.h>
 #include <iostream>
+#include <memory>
+#include "gameObject.h"
+#include "textureManager.h"
 
 namespace tamagochi {
 
@@ -22,7 +24,7 @@ class Stat : public game::GameObject {
         void AddStat() {level_ += 10;}
         void SubStat() {level_ -= 10;}
 
-        int GetStat() {return level_;}
+        int GetStat() const {return level_;}
 };
 
 class HealthStat : public Stat {
@@ -110,14 +112,14 @@ class Pet : public game::GameObject {
         bool isSick_;
         bool hasPooped_;
 
-        HealthStat *health_;
-        HungerStat *hunger_;
-        MoodStat *mood_;
-        GameObject *termometer;
-        GameObject *poop;
+        std::unique_ptr<HealthStat> health_;
+        std::unique_ptr<HungerStat> hunger_;
+        std::unique_ptr<MoodStat> mood_;
+        std::unique_ptr<GameObject> termometer;
+        std::unique_ptr<GameObject> poop;
 
         Mix_Music *meow;
-        GameObject *lovesign;
+        std::unique_ptr<GameObject> lovesign;
 
     public:
 
@@ -129,18 +131,18 @@ class Pet : public game::GameObject {
             isSick_ = false;
             hasPooped_ = false;
 
-            health_ = new HealthStat("health.png", 20, 20, 100, 85);
+            health_ = std::make_unique<HealthStat>("health.png", 20, 20, 100, 85);
             health_->SetStat();
-            hunger_ = new HungerStat("food.png", 120, 20, 100, 85);
+            hunger_ = std::make_unique<HungerStat>("food.png", 120, 20, 100, 85);
             hunger_->SetStat();
-            mood_ = new MoodStat("mood.png", 200, 20, 100, 85);
+            mood_ = std::make_unique<MoodStat>("mood.png", 200, 20, 100, 85);
             mood_->SetStat();
 
-            termometer = new GameObject("termometer.png", 400, 400, 100, 100);
-            poop = new GameObject("poop.png", 350, 600, 100, 100);
+            termometer = std::make_unique<GameObject>("termometer.png", 400, 400, 100, 100);
+            poop = std::make_unique<GameObject>("poop.png", 350, 600, 100, 100);
 
             meow = Mix_LoadMUS("meow.mp3");
-            lovesign = new GameObject("love.png", 400, 400, 100, 100);
+            lovesign = std::make_unique<GameObject>("love.png", 400, 400, 100, 100);
         }
 
         void UpdatePet() {

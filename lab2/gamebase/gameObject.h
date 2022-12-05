@@ -6,7 +6,7 @@ namespace game {
 class GameObject {
     public:
         GameObject(const char* texturesheet, int x, int y, int w, int h);
-        ~GameObject();
+        ~GameObject() = default;
 
         void Update();        
         void Render();
