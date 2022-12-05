@@ -195,26 +195,34 @@ CMakeFiles/tamagochi.dir/gamebase/gameObject.cpp.o: \
  /usr/include/SDL2/SDL_misc.h /usr/include/SDL2/SDL_image.h \
  /usr/include/SDL2/SDL.h \
  /home/dlaaren/Desktop/lab2/gamebase/textureManager.h \
- /home/dlaaren/Desktop/lab2/gamebase/game.h /usr/include/SDL2/SDL_mixer.h \
- /home/dlaaren/Desktop/lab2/gamebase/tamagochi.h \
- /usr/include/c++/12.2.0/iostream /usr/include/c++/12.2.0/ostream \
- /usr/include/c++/12.2.0/ios /usr/include/c++/12.2.0/iosfwd \
- /usr/include/c++/12.2.0/bits/stringfwd.h \
- /usr/include/c++/12.2.0/bits/memoryfwd.h \
- /usr/include/c++/12.2.0/bits/postypes.h /usr/include/c++/12.2.0/cwchar \
- /usr/include/c++/12.2.0/exception \
+ /home/dlaaren/Desktop/lab2/gamebase/game.h \
+ /usr/include/c++/12.2.0/memory /usr/include/c++/12.2.0/bits/allocator.h \
+ /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++allocator.h \
+ /usr/include/c++/12.2.0/bits/new_allocator.h /usr/include/c++/12.2.0/new \
  /usr/include/c++/12.2.0/bits/exception.h \
- /usr/include/c++/12.2.0/bits/exception_ptr.h \
- /usr/include/c++/12.2.0/bits/cxxabi_init_exception.h \
+ /usr/include/c++/12.2.0/bits/memoryfwd.h \
+ /usr/include/c++/12.2.0/bits/stl_construct.h \
+ /usr/include/c++/12.2.0/bits/stl_uninitialized.h \
+ /usr/include/c++/12.2.0/ext/alloc_traits.h \
+ /usr/include/c++/12.2.0/bits/alloc_traits.h \
+ /usr/include/c++/12.2.0/bits/stl_tempbuf.h \
+ /usr/include/c++/12.2.0/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/12.2.0/bits/align.h /usr/include/c++/12.2.0/bit \
+ /usr/include/c++/12.2.0/bits/uses_allocator.h \
+ /usr/include/c++/12.2.0/bits/unique_ptr.h /usr/include/c++/12.2.0/tuple \
+ /usr/include/c++/12.2.0/bits/invoke.h \
+ /usr/include/c++/12.2.0/bits/stl_function.h \
+ /usr/include/c++/12.2.0/backward/binders.h \
+ /usr/include/c++/12.2.0/bits/functional_hash.h \
+ /usr/include/c++/12.2.0/bits/hash_bytes.h \
+ /usr/include/c++/12.2.0/bits/shared_ptr.h /usr/include/c++/12.2.0/iosfwd \
+ /usr/include/c++/12.2.0/bits/stringfwd.h \
+ /usr/include/c++/12.2.0/bits/postypes.h /usr/include/c++/12.2.0/cwchar \
+ /usr/include/c++/12.2.0/bits/shared_ptr_base.h \
  /usr/include/c++/12.2.0/typeinfo \
- /usr/include/c++/12.2.0/bits/hash_bytes.h /usr/include/c++/12.2.0/new \
- /usr/include/c++/12.2.0/bits/nested_exception.h \
- /usr/include/c++/12.2.0/bits/char_traits.h \
- /usr/include/c++/12.2.0/cstdint /usr/include/c++/12.2.0/bits/localefwd.h \
- /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++locale.h \
- /usr/include/c++/12.2.0/clocale /usr/include/locale.h \
- /usr/include/bits/locale.h /usr/include/c++/12.2.0/cctype \
- /usr/include/c++/12.2.0/bits/ios_base.h \
+ /usr/include/c++/12.2.0/bits/allocated_ptr.h \
+ /usr/include/c++/12.2.0/bits/refwrap.h \
+ /usr/include/c++/12.2.0/ext/aligned_buffer.h \
  /usr/include/c++/12.2.0/ext/atomicity.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/gthr.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/gthr-default.h \
@@ -227,24 +235,34 @@ CMakeFiles/tamagochi.dir/gamebase/gameObject.cpp.o: \
  /usr/include/bits/pthread_stack_min-dynamic.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/atomic_word.h \
  /usr/include/sys/single_threaded.h \
+ /usr/include/c++/12.2.0/ext/concurrence.h \
+ /usr/include/c++/12.2.0/exception \
+ /usr/include/c++/12.2.0/bits/exception_ptr.h \
+ /usr/include/c++/12.2.0/bits/cxxabi_init_exception.h \
+ /usr/include/c++/12.2.0/bits/nested_exception.h \
+ /usr/include/c++/12.2.0/bits/shared_ptr_atomic.h \
+ /usr/include/c++/12.2.0/bits/atomic_base.h \
+ /usr/include/c++/12.2.0/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/12.2.0/backward/auto_ptr.h \
+ /usr/include/c++/12.2.0/pstl/glue_memory_defs.h \
+ /usr/include/c++/12.2.0/pstl/execution_defs.h \
+ /usr/include/SDL2/SDL_mixer.h \
+ /home/dlaaren/Desktop/lab2/gamebase/tamagochi.h \
+ /usr/include/c++/12.2.0/iostream /usr/include/c++/12.2.0/ostream \
+ /usr/include/c++/12.2.0/ios /usr/include/c++/12.2.0/bits/char_traits.h \
+ /usr/include/c++/12.2.0/cstdint /usr/include/c++/12.2.0/bits/localefwd.h \
+ /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++locale.h \
+ /usr/include/c++/12.2.0/clocale /usr/include/locale.h \
+ /usr/include/bits/locale.h /usr/include/c++/12.2.0/cctype \
+ /usr/include/c++/12.2.0/bits/ios_base.h \
  /usr/include/c++/12.2.0/bits/locale_classes.h \
- /usr/include/c++/12.2.0/string /usr/include/c++/12.2.0/bits/allocator.h \
- /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++allocator.h \
- /usr/include/c++/12.2.0/bits/new_allocator.h \
+ /usr/include/c++/12.2.0/string \
  /usr/include/c++/12.2.0/bits/ostream_insert.h \
  /usr/include/c++/12.2.0/bits/cxxabi_forced.h \
- /usr/include/c++/12.2.0/bits/stl_function.h \
- /usr/include/c++/12.2.0/backward/binders.h \
- /usr/include/c++/12.2.0/bits/refwrap.h \
- /usr/include/c++/12.2.0/bits/invoke.h \
  /usr/include/c++/12.2.0/bits/range_access.h \
  /usr/include/c++/12.2.0/initializer_list \
  /usr/include/c++/12.2.0/bits/basic_string.h \
- /usr/include/c++/12.2.0/ext/alloc_traits.h \
- /usr/include/c++/12.2.0/bits/alloc_traits.h \
- /usr/include/c++/12.2.0/bits/stl_construct.h \
  /usr/include/c++/12.2.0/string_view \
- /usr/include/c++/12.2.0/bits/functional_hash.h \
  /usr/include/c++/12.2.0/bits/string_view.tcc \
  /usr/include/c++/12.2.0/ext/string_conversions.h \
  /usr/include/c++/12.2.0/cstdio /usr/include/c++/12.2.0/cerrno \
