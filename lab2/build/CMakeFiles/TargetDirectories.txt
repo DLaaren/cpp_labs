@@ -1,0 +1,5 @@
+/home/dlaaren/Desktop/lab2/build/CMakeFiles/tamagochi.dir
+/home/dlaaren/Desktop/lab2/build/CMakeFiles/package.dir
+/home/dlaaren/Desktop/lab2/build/CMakeFiles/package_source.dir
+/home/dlaaren/Desktop/lab2/build/CMakeFiles/edit_cache.dir
+/home/dlaaren/Desktop/lab2/build/CMakeFiles/rebuild_cache.dir
