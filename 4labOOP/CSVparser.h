@@ -49,10 +49,6 @@ class CSVparser {
                     }
                 }
 
-                /* void printTuple(std::ostream &ostream, cosnt Tuple &tuple) {
-                    ostream << 
-                } */
-
                 bool operator!=(const Tuple &other) const {
                     return lastTuple_  != other.lastTuple_;
                 }
