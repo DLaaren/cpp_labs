@@ -8,8 +8,15 @@ int main() {
     }
 
     CSVparser<int, double, std::string> CSVparser(file);
-    for (auto tuple : CSVparser) {
-        std::cout << tuple << std::endl;
+
+    try {
+        for (auto tuple : CSVparser) {
+            std::cout << tuple << std::endl;
+        }
+    } catch (std::invalid_argument &e) {
+        std::cout << e.what();
+    } catch (std::runtime_error &e) {
+        std::cout << e.what();
     }
 
     file.close();
