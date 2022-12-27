@@ -5,6 +5,60 @@
 #include <iostream>
 #include <sstream>
 
+//Reader
+//recursion
+template<class Ch, class Tr, class Head, class... Tail>
+class TupleReader {
+    public:
+        static std::tuple<Head, Tail...> read(std::basic_istream<Ch,Tr> &input, size_t columnNumber = 1) {
+            if (!input.eof()) {
+                Head data;
+                input >> data;
+                return std::tuple_cat( std::make_tuple(data), TupleReader<Ch, Tr, Tail...>::read(input, ++columnNumber) );
+            }
+        }
+};
+
+template<class Ch, class Tr, class Head>
+class TupleReader<Ch, Tr, Head> {
+    public:
+        static std::tuple<Head> read(std::basic_istream<Ch,Tr> &input, size_t columnNumber = 1) {
+            if (!input.eof()) {
+                Head data;
+                input >> data;
+                return std::make_tuple(data);
+            }
+        }
+};
+
+//Printer
+//recursion
+template<class Ch, class Tr, class Tuple, std::size_t Size>
+class TuplePrinter {
+    public:
+        static void print(std::ostream &output, const Tuple &tuple) {
+            TuplePrinter<Ch, Tr, Tuple, Size - 1>::print(output, tuple);
+            output << ", " << std::get<Size-1>(tuple);
+        }
+};
+
+template<class Ch, class Tr, class Tuple>
+class TuplePrinter<Ch, Tr, Tuple, 1> {
+    public:
+        static void print(std::basic_ostream<Ch,Tr> &output, const Tuple &tuple) {
+            output << std::get<0>(tuple);
+        }
+};
+
+template<typename Ch, typename Tr, typename... Args>
+std::ostream& operator<<(std::basic_ostream<Ch,Tr> &output, const std::tuple<Args...> &tuple) {
+    std::cout << "(";
+    TuplePrinter<Ch, Tr, decltype(tuple), sizeof...(Args)>::print(output, tuple);
+    std::cout << ")";
+}
+
+
+
 template<typename ...Args> 
 class CSVparser {
     private:
@@ -12,41 +66,41 @@ class CSVparser {
         std::streampos fileStart_;
 
     public:
-        CSVparser(std::ifstream &input) : input_(input), lastTuple_(false) {
+        CSVparser(std::ifstream &input) : input_{input} {
             fileStart_ = input_.tellg();
-            currentPos_ = fileStart_;
         }
 
         class Tuple {
             private:
-                CSVParser &CSVparser_;
+                CSVparser &CSVparser_;
                 std::tuple<Args...> tuple_;
                 bool lastTuple_;
+                size_t lineNumber_;
                 std::streampos currentPos_;
 
             public:
-                Tuple(CSVParser &CSVparser, bool isLastTuple)
-                : CSVparser_{CSVparser}, lastTuple_(isLastTuple), currentPos_(CVSparser.fileStart_) {
+                Tuple(CSVparser &CSVparser, bool isLastTuple)
+                : CSVparser_{CSVparser}, lastTuple_{isLastTuple}, lineNumber_{1}, currentPos_{CSVparser.fileStart_} {
                     if (isLastTuple) return;
                     readTuple();
                 }
 
                 void readTuple() {
-                    if (CSVparcer_.input_.eof() ) {
-                        CSVparser_.input_.seekg(currentPos_);
-
-                        std::string currentLine;
-                        std::getline(CSVparser_.input_, currentLine, "\n");
-
-                        currentPos_ = CSVparser_.input.tellg();
-                        std::istringstream lineParser {currentLine};
-                        
-                        if (!lineParser.eof()) {
-                            Args data;
-                            lineParser >> data;
-                            std::make_tuple(data);
-                        }
+                    if (CSVparser_.input_.eof()) {
+                        lastTuple_ = true;
+                        return;
                     }
+                    CSVparser_.input_.clear();
+                    CSVparser_.input_.seekg(currentPos_);
+
+                    std::string currentLine;
+                    std::getline(CSVparser_.input_, currentLine, '\n');
+
+                    currentPos_ = CSVparser_.input_.tellg();
+                    std::istringstream lineParser {currentLine};
+                      
+                    tuple_ = TupleReader<char, std::char_traits<char>, Args...>::read(lineParser, lineNumber_);
+                    lineNumber_++;
                 }
 
                 bool operator!=(const Tuple &other) const {
@@ -59,10 +113,10 @@ class CSVparser {
                 }
 
                 std::tuple<Args...> operator*() const {
-                    return Tuple;
+                    return tuple_;
                 }
 
-                ~Tuple = default;
+                ~Tuple() = default;
         };
 
         Tuple begin() {
@@ -74,14 +128,3 @@ class CSVparser {
             return Tuple{*this, true};
         }
 };
-
-template<typename ...Args> 
-std::ostream& operator<<(std::ostream &ostream, const std::tuple<Args...> &tuple) {
-    size_t sizeTuple = std::tuple_size<decltype(tuple)>::value;
-    for (size_t i = 0; i < sizeTuple; i++) {
-        ostream << std::get<i>(tuple);
-        if (i != sizeTuple - 1) {
-            ostream << ",";
-        }
-    }
-}
