@@ -11,11 +11,15 @@ template<class Ch, class Tr, class Head, class... Tail>
 class TupleReader {
     public:
         static std::tuple<Head, Tail...> read(std::basic_istream<Ch,Tr> &input, size_t columnNumber = 1) {
-            if (!input.eof()) {
-                Head data;
-                input >> data;
-                return std::tuple_cat( std::make_tuple(data), TupleReader<Ch, Tr, Tail...>::read(input, ++columnNumber) );
+            if (input.eof()) {
+                throw std::invalid_argument("Nothing to read\n");
             }
+            Head data;
+            input >> data;
+            if (input.fail()) {
+                throw std::runtime_error("Failed to read data\n");
+            }
+            return std::tuple_cat( std::make_tuple(data), TupleReader<Ch, Tr, Tail...>::read(input, ++columnNumber) );
         }
 };
 
@@ -23,43 +27,44 @@ template<class Ch, class Tr, class Head>
 class TupleReader<Ch, Tr, Head> {
     public:
         static std::tuple<Head> read(std::basic_istream<Ch,Tr> &input, size_t columnNumber = 1) {
-            if (!input.eof()) {
-                Head data;
-                input >> data;
-                return std::make_tuple(data);
+            if (input.eof()) {
+                throw std::invalid_argument("Nothing to read\n");
             }
+            Head data;
+            input >> data;
+            if (input.fail()) {
+                throw std::runtime_error("Failed to read data\n");
+            }
+            return std::make_tuple(data);
         }
 };
 
 //Printer
 //recursion
-template<class Ch, class Tr, class Tuple, std::size_t Size>
+template<class Tuple, std::size_t Size>
 class TuplePrinter {
     public:
         static void print(std::ostream &output, const Tuple &tuple) {
-            TuplePrinter<Ch, Tr, Tuple, Size - 1>::print(output, tuple);
+            TuplePrinter<Tuple, Size - 1>::print(output, tuple);
             output << ", " << std::get<Size-1>(tuple);
         }
 };
 
-template<class Ch, class Tr, class Tuple>
-class TuplePrinter<Ch, Tr, Tuple, 1> {
+template<class Tuple>
+class TuplePrinter<Tuple, 1> {
     public:
-        static void print(std::basic_ostream<Ch,Tr> &output, const Tuple &tuple) {
+        static void print(std::ostream &output, const Tuple &tuple) {
             output << std::get<0>(tuple);
         }
 };
 
-template<typename Ch, typename Tr, typename... Args>
-std::ostream& operator<<(std::basic_ostream<Ch,Tr> &output, const std::tuple<Args...> &tuple) {
-    std::cout << "(";
-    TuplePrinter<Ch, Tr, decltype(tuple), sizeof...(Args)>::print(output, tuple);
-    std::cout << ")";
+template<typename... Args>
+std::ostream& operator<<(std::ostream &output, const std::tuple<Args...> &tuple) {
+    TuplePrinter<decltype(tuple), sizeof...(Args)>::print(output, tuple);
+    return output;
 }
 
-
-
-template<typename ...Args> 
+template<typename... Args> 
 class CSVparser {
     private:
         std::ifstream &input_;
